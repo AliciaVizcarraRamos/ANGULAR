@@ -1,0 +1,22 @@
+# Build artifacts
+**/target/
+**/dist/
+**/build/
+**/out/
+**/.gradle/
+
+# Node
+**/node_modules/
+**/.angular/
+
+# IDE
+**/.idea/
+**/.vscode/
+
+# OS
+**/.DS_Store
+**/Thumbs.db
+
+# Logs
+**/logs/
+**/*.log

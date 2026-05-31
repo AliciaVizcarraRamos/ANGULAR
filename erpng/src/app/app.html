@@ -1,0 +1,19 @@
+<header class="app-header">
+  <div>
+    <h1>{{ title() }}</h1>
+    <p>Frontend Angular 21 para microservicios</p>
+  </div>
+
+  <nav>
+    <a routerLink="/categorias" routerLinkActive="active">Categorías</a>
+    <a routerLink="/productos" routerLinkActive="active">Productos</a>
+    @if (auth.isAuthenticated()) {
+      <span>{{ auth.username() }}</span>
+      <button type="button" (click)="logout()">Salir</button>
+    } @else {
+      <a routerLink="/auth" routerLinkActive="active">Login</a>
+    }
+  </nav>
+</header>
+
+<router-outlet />

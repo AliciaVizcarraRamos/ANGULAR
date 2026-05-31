@@ -1,0 +1,38 @@
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.app-header h1 {
+  margin: 0;
+}
+
+.app-header p {
+  margin: 0.25rem 0 0;
+}
+
+nav {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+nav a,
+nav button {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+nav a.active {
+  border-color: #1976d2;
+  color: #1976d2;
+}

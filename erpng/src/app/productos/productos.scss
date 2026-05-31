@@ -1,0 +1,72 @@
+.productos-page {
+  padding: 1rem;
+}
+
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+button {
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  border-radius: 4px;
+  background: #1976d2;
+  color: #fff;
+  cursor: pointer;
+}
+
+button.secondary {
+  border: 1px solid #bbb;
+  background: #fff;
+  color: #222;
+}
+
+button.danger {
+  background: #b00020;
+}
+
+.producto-form {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) minmax(180px, 1.5fr) minmax(120px, 0.6fr) auto auto;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+input,
+select {
+  padding: 0.55rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.65rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.error {
+  color: #b00020;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+@media (max-width: 760px) {
+  .producto-form {
+    grid-template-columns: 1fr;
+  }
+}

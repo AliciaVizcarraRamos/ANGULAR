@@ -1,0 +1,83 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: auth-route
+          uri: lb://auth
+          predicates:
+            - Path=/auth/**
+
+        - id: catalogo-route
+          uri: lb://catalogo
+          predicates:
+            - Path=/api/v1/categorias/**
+        - id: catalogo-instancia
+          uri: lb://catalogo
+          predicates:
+            - Path=/api/v1/catalogo/instancia
+        - id: catalogo-swagger
+          uri: lb://catalogo
+          predicates:
+            - Path=/catalogo/swagger-ui/**,/catalogo/v3/api-docs/**
+        
+        # PRODUCTO
+        - id: producto-route
+          uri: lb://producto
+          predicates:
+            - Path=/api/v1/productos/**
+        - id: producto-instancia
+          uri: lb://producto
+          predicates:
+            - Path=/api/v1/producto/instancia
+        - id: producto-swagger
+          uri: lb://producto
+          predicates:
+            - Path=/producto/swagger-ui/**,/producto/v3/api-docs/**
+
+        # ORDEN
+        - id: orden-route
+          uri: lb://orden-ms
+          predicates:
+            - Path=/api/v1/ordenes/**
+        - id: orden-swagger
+          uri: lb://orden-ms
+          predicates:
+            - Path=/orden-ms/swagger-ui/**,/orden-ms/v3/api-docs/**
+
+        # PAGO
+        - id: pago-route
+          uri: lb://pago-ms
+          predicates:
+            - Path=/api/v1/pagos/**
+        - id: pago-swagger
+          uri: lb://pago-ms
+          predicates:
+            - Path=/pago-ms/swagger-ui/**,/pago-ms/v3/api-docs/**
+        
+        #
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: false
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:7081/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,circuitbreakers,circuitbreakerevents
+  endpoint:
+    health:
+      show-details: always
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+jwt:
+  secret: 1s3alJJATsWK91vf5zrODYlQa+LauM/9udaLZlQhHlpu46g/KzmSS5c3CGy6xF9kzAqBhvjmKBuZO/pSL7tfOg==
+  issuer: auth

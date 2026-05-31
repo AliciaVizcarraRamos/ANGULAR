@@ -1,0 +1,64 @@
+<section class="productos-page">
+  <div class="page-title">
+    <h2>Productos</h2>
+    <button type="button" (click)="cargarProductos()">Recargar</button>
+  </div>
+
+  <p *ngIf="loading()">Cargando productos...</p>
+  <p class="error" *ngIf="error()">{{ error() }}</p>
+
+  <form *ngIf="puedeGestionarProductos()" class="producto-form" (ngSubmit)="guardarProducto()">
+    <input
+      type="text"
+      name="nombre"
+      placeholder="Nombre"
+      [(ngModel)]="formNombre"
+      required
+    >
+
+    <input
+      type="text"
+      name="descripcion"
+      placeholder="Descripción"
+      [(ngModel)]="formDescripcion"
+    >
+
+    <select
+      name="idCategoria"
+      [(ngModel)]="formIdCategoria"
+      required
+    >
+      <option [ngValue]="null">Seleccione categoría</option>
+      <option *ngFor="let categoria of categorias()" [ngValue]="categoria.id">
+        {{ categoria.nombre }}
+      </option>
+    </select>
+
+    <button type="submit">{{ editandoId ? 'Guardar' : 'Agregar' }}</button>
+    <button *ngIf="editandoId" type="button" class="secondary" (click)="cancelarEdicion()">Cancelar</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Categoría</th>
+        <th *ngIf="puedeGestionarProductos()">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos()">
+        <td>{{ producto.id }}</td>
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.descripcion }}</td>
+        <td>{{ nombreCategoria(producto.idCategoria) }}</td>
+        <td *ngIf="puedeGestionarProductos()" class="actions">
+          <button type="button" class="secondary" (click)="iniciarEdicion(producto)">Editar</button>
+          <button type="button" class="danger" (click)="eliminarProducto(producto.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
